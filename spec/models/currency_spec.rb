@@ -3,9 +3,8 @@ require 'rails_helper'
 
 RSpec.describe Currency, type: :model do
   # Validation tests
-  # ensure columns name, age, gender, location and infected are present before saving
+  # ensure columns code, symbol, name, country and flag are present before saving
   it { should validate_presence_of(:code) }
-  it { should validate_presence_of(:symbol) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:country) }
   it { should validate_presence_of(:flag) }

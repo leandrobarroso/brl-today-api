@@ -10,7 +10,6 @@ RSpec.describe 'Todos API', type: :request do
     before { get '/api/v1/exchange_rates' }
 
     it 'returns exchange rates' do
-      p json
       expect(json).not_to be_empty
       expect(json.size).to eq(ExchangeRate.all.size)
     end
@@ -20,13 +19,11 @@ RSpec.describe 'Todos API', type: :request do
     end
   end
 
-  describe 'GET /exchange_rates/:currency_from_id' do
-    # make HTTP get request before each example
-    before { get '/api/v1/exchange_rates/1' }
-
+  describe 'GET /exchange_rates/:id' do
     context 'when the record exists' do
+      # make HTTP get request before each example
+      before { get "/api/v1/exchange_rates/#{exchange.id}" }
       it 'returns last exchange rate' do
-        p json
         expect(json).not_to be_empty
         expect(json.size).to eq(1)
       end
@@ -36,11 +33,13 @@ RSpec.describe 'Todos API', type: :request do
     end
 
     context "when the record doesn't exist" do
+      # make HTTP get request before each example
+      before { get '/api/v1/exchange_rates/123abc' }
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
       end
       it 'returns a not found message' do
-        expect(response.body).to match(/Record not found/)
+        expect(response.body).to match(/Couldn't find ExchangeRate with/)
       end
     end
   end

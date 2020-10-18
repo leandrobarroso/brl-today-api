@@ -7,9 +7,10 @@ RSpec.describe 'Todos API', type: :request do
   # Test context for GET /exchange_rates
   describe 'GET /exchange_rates' do
     # make HTTP get request before each example
-    before { get '/v1/exchange_rates' }
+    before { get '/api/v1/exchange_rates' }
 
     it 'returns exchange rates' do
+      p json
       expect(json).not_to be_empty
       expect(json.size).to eq(ExchangeRate.all.size)
     end

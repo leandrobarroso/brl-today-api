@@ -8,6 +8,6 @@ class ExchangeRate < ApplicationRecord
 
   def self.update_rates
     exchange_rates = ExchangeRateApiServices::StandardEndpoint.new('BRL').call
-    puts exchange_rates['conversion_rates']
+    puts exchange_rates
   end
 end

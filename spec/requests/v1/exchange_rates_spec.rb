@@ -2,6 +2,57 @@ require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
   # initialize test data
+  data = [
+    {
+      code: 'BRL',
+      symbol: 'R$',
+      name: 'Brazilian Real',
+      country: 'Brazil',
+      flag: '&#127463;&#127479;'
+    },
+    {
+      code: 'USD',
+      symbol: '$',
+      name: 'US Dollar',
+      country: 'USA',
+      flag: '&#127482;&#127480;'
+    },
+    {
+      code: 'EUR',
+      symbol: '€',
+      name: 'Euro',
+      country: 'European Union',
+      flag: '&#127466;&#127482;'
+    },
+    {
+      code: 'JPY',
+      symbol: '¥',
+      name: 'Japanese Yen',
+      country: 'Japan',
+      flag: '&#127471;&#127477;'
+    },
+    {
+      code: 'GBP',
+      symbol: '£',
+      name: 'Pounds Sterling',
+      country: 'United Kingdom',
+      flag: '&#127468;&#127463;'
+    },
+    {
+      code: 'AUD',
+      symbol: 'A$',
+      name: 'Australian Dollar',
+      country: 'Australia',
+      flag: '&#127462;&#127482;'
+    },
+    {
+      code: 'CAD',
+      symbol: 'C$',
+      name: 'Canadian Dollar',
+      country: 'Canada',
+      flag: '&#127464;&#127462;'
+    }
+  ]
   let!(:exchange) { create(:exchange_rate) }
 
   # Test context for GET /exchange_rates

@@ -22,7 +22,7 @@ RSpec.describe ExchangeRate, type: :model do
   describe '#update_rates' do
     context "responds to update_rates method" do
       let!(:exchange) { create(:exchange_rate) }
-      it { expect(exchange).to respond_to(:update_rates) }
+      it { expect(ExchangeRate).to respond_to(:update_rates) }
     end
     # context "executes update_rates correctly" do
     #   let!(:exchange) { create(:exchange_rate) }

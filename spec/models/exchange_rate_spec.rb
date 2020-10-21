@@ -20,7 +20,7 @@ RSpec.describe ExchangeRate, type: :model do
 
   # Class methods tests
   describe '#update_rates' do
-    context "responds to update_rates method" do
+    context 'responds to update_rates method' do
       let!(:exchange) { create(:exchange_rate) }
       it { expect(ExchangeRate).to respond_to(:update_rates) }
     end

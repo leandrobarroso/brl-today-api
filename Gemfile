@@ -42,6 +42,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # my added gems
 gem 'rest-client'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 
 group :test do
   gem 'database_cleaner'

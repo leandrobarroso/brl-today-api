@@ -7,6 +7,7 @@ class ExchangeRate < ApplicationRecord
   validates :inv_rate, numericality: { greater_than: 0.00 }
 
   def self.update_rates
+    puts 'Calling ExchangeRate-API standard endpoint...'
     exchange_rates = ExchangeRateApiServices::StandardEndpoint.new('BRL').call
     currencies = Currency.all
     currencies.each do |currency|
@@ -17,6 +18,7 @@ class ExchangeRate < ApplicationRecord
         inv_rate: 1 / exchange_rates['conversion_rates'][currency.code],
         update_time: exchange_rates['time_last_update_utc']
       )
+      puts "Saving last exchange rates for #{rate.currency_from} / #{rate.currency_to}..."
       rate.save!
     end
   end

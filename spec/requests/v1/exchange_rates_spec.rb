@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Todos API', type: :request do
+RSpec.describe 'BRL Today API', type: :request do
   # initialize test data
   data = [
     {

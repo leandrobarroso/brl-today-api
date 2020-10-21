@@ -6,6 +6,10 @@ class ExchangeRate < ApplicationRecord
   validates :rate, numericality: { greater_than: 0.00 }
   validates :inv_rate, numericality: { greater_than: 0.00 }
 
+  def self.last_rates
+    ExchangeRate.last(Currency.all.count)
+  end
+
   def self.update_rates
     puts 'Calling ExchangeRate-API standard endpoint...'
     exchange_rates = ExchangeRateApiServices::StandardEndpoint.new('BRL').call

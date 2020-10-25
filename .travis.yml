@@ -2,15 +2,19 @@ language: ruby
 cache:
   bundler: true
 services:
-  - redis-server
+- redis-server
 sudo: required
 before_install:
 - sudo apt-get update
 addons:
   postgresql: '9.6'
 before_script:
-  - psql -c 'create database brl_today_clone_test;' -U postgres
+- psql -c 'create database brl_today_clone_test;' -U postgres
 script:
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec
-  
+- bundle exec rake db:test:prepare
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: CwwFnLB7xmbo+vvpMdvTBGwgYx8xsYhug0367Xzaipr1Ky+44z+UuwWqFqceWA6LUmIJothcQwR7FbLcQmU1WSSzTF8wRHkyc0yjidDGTP1oP4MItNSVfs8BzBvgJxIRfSPth/vWFzGA26PGNUrrRrbdous1nG1ptEWG6WN1UI+YCpPN25QgqTwfmcGX6aNtLLOEL64Rah1nhKPhjX1B+DLEF9OBuXlUfwIUK+X3d/cF4avSlObRa+uDv+Z6CdDKUwYlZ6YT47COk8hFSAEk407BvN3GAJawalYh2U5Jq9+51XFzOGyH+2YNlsuz4r/7Mg2z7BHmDHxfoFWzTkjSLBplV33eF6Eb62Hyx63qTM3wu33XRc5+DHakUYKx5xxV6rp1OoF9aM0nHl+FLj9KuxVsezOiGAkh5ZmtDBD2S7KXtKnTHnQPneVtv7WE4gicN7G5OYBwWtGROesKxXcDFQ0HF2ZZyQ4P0VZfFydHTrzcdjUqL0r/AW+MvEprT+2n69BcWqDeDiuzavqVJIHUMfdFgnX1CjS2Z6rXfl7UyzqsQR6cq7oChe/O2NEcYJc/JtiVZuEvcrBW14ITUXQ1w6mn1eAAV6hnaPXeN2h3JFAV+hWel6/q9jcA3RwpdaejjSixnlTd19lMYKo+AdBFZoxLfFQ9zOocHEQnlIMzz3o=
+    run: "rails db:migrate"

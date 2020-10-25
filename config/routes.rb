@@ -6,4 +6,8 @@ Rails.application.routes.draw do
       get 'exchange_rates/:currency_to', to: 'exchange_rates#show'
     end
   end
+
+  # Sidekiq Web UI, only for admins.
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

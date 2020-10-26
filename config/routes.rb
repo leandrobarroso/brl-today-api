@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   # Sidekiq Web UI, only for admins.
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
